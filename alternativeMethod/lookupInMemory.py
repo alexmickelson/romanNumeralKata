@@ -1,6 +1,4 @@
-from typing import Dict
-
-lookup: Dict[str, int] = {
+lookup = {
     "I": 1,
     "II": 2,
     "III": 3,
