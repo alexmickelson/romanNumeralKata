@@ -1,5 +1,6 @@
-import alternativeMethod.lookup as lookup
 import romanNumerals as rn
+import alternativeMethod.lookup as lookup
+import alternativeMethod.lookupInMemory as mem_lookup
 import time
 
 
@@ -8,10 +9,16 @@ if __name__ == "__main__":
     num = rn.parse_roman_numeral("MCMXC")
     end = time.time()
     print("parsing: " + str(num))
-    print('%f' % (end - start))
+    print('second: %f' % (end - start))
 
     start = time.time()
     num = lookup.parse_roman_numeral("MCMXC")
     end = time.time()
     print("lookup: " + str(num))
-    print('%f' % (end - start))
+    print('second: %f' % (end - start))
+
+    start = time.time()
+    num = mem_lookup.parse_roman_numeral("MCMXC")
+    end = time.time()
+    print("lookup from memory: " + str(num))
+    print('second: %f' % (end - start))
