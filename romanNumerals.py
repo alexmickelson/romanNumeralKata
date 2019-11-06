@@ -7,17 +7,6 @@ def parse_roman_numeral(numerals: str) -> int:
     return sum(simple_decimals)
 
 
-def simplify_decimal_list(roman_decimals: List[int]) -> List[int]:
-    simple_decimals: List[int] = []
-    while (len(roman_decimals) > 0):
-        numeral_end_index = length_of_next_numeral(roman_decimals)
-        simple_number = simplify_numeral_by_subtraction(
-                            roman_decimals[0:numeral_end_index])
-        roman_decimals = roman_decimals[numeral_end_index: len(roman_decimals)]
-        simple_decimals.append(simple_number)
-    return simple_decimals
-
-
 def numeral_to_int(numeral: str) -> int:
     numeral = numeral.upper()
     numeralMap = {
@@ -32,6 +21,19 @@ def numeral_to_int(numeral: str) -> int:
     return numeralMap[numeral]
 
 
+def simplify_decimal_list(roman_decimals: List[int]) -> List[int]:
+    simple_decimals: List[int] = []
+    while (len(roman_decimals) > 0):
+        numeral_end_index = length_of_next_numeral(roman_decimals)
+
+        simple_number = simplify_numeral_by_subtraction(
+                            roman_decimals[0:numeral_end_index])
+        simple_decimals.append(simple_number)
+
+        roman_decimals = roman_decimals[numeral_end_index: len(roman_decimals)]
+    return simple_decimals
+
+
 def length_of_next_numeral(roman_decimals: List[int]) -> int:
     if (roman_decimals[0] >= max(roman_decimals)):
         return 1
@@ -42,11 +44,14 @@ def length_of_next_numeral(roman_decimals: List[int]) -> int:
 def simplify_numeral_by_subtraction(roman_decimals: List[int]) -> int:
     if(len(roman_decimals) == 1):
         return roman_decimals[0]
-    result: int = max(roman_decimals)
-    roman_decimals.remove(result)
+
+    calculated_value: int = max(roman_decimals)
+    roman_decimals.remove(calculated_value)
+
     for number in roman_decimals:
-        result -= number
-    return result
+        calculated_value -= number
+
+    return calculated_value
 
 
 if __name__ == "__main__":
