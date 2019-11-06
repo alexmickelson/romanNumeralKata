@@ -52,7 +52,3 @@ def simplify_numeral_by_subtraction(roman_decimals: List[int]) -> int:
         calculated_value -= number
 
     return calculated_value
-
-
-if __name__ == "__main__":
-    pass
